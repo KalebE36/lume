@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ChatView: View {
-    @State private var messageText: String = "" // State for the input field
+    @State private var messageText: String = ""
     @State private var messages: [String] = ["test 1"]
 
     var body: some View {
@@ -19,9 +19,13 @@ struct ChatView: View {
                         .foregroundColor(.white)
                         .padding()
                 }
-
                 Spacer()
-
+                Button(action: {
+                    print("hi")}
+                ) {
+                    Image(systemName: "gear")
+                }.font(.title2)
+                
             }
             .padding(.horizontal)
             .padding(.top)
@@ -42,14 +46,18 @@ struct ChatView: View {
             .background(Color.gray.opacity(0.5))
             .cornerRadius(10)
             .padding(.horizontal)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.white, lineWidth: 1)
+            )
 
 
-            // --- Input TextField ---
+
             TextField("Type your message...", text: $messageText)
                 .padding()
                 .foregroundColor(.white)
                 .background(Color.clear)
-                .cornerRadius(20) // Rounded corners for the TextField view
+                .cornerRadius(20)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(Color.white, lineWidth: 1)
@@ -59,7 +67,7 @@ struct ChatView: View {
 
         }
         .background(Color.gray)
-        .ignoresSafeArea(.all) 
+        .ignoresSafeArea(.all)
     }
 }
 
