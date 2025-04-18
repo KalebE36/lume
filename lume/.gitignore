@@ -1,0 +1,77 @@
+# Xcode
+#
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+*.xcuserstate
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+*.DS_Store
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+#
+.build/
+Packages/
+Package.pins
+Package.resolved
+.swiftpm
+
+# CocoaPods
+#
+Pods/
+Podfile.lock
+
+# Carthage
+#
+Carthage/Build
+
+# fastlane
+#
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Code Injection
+#
+iOSInjectionProject/
+
+# API Keys and Secrets
+#
+*.pem
+*.env
+ApiKeys.swift
+Config.swift
+Secrets.swift
+
+# LLM Model files
+#
+*.bin
+*.gguf
+*.ggml
+Models/
