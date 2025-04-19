@@ -8,14 +8,16 @@ class ChatViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var LLM: String = "gem"
     
-    private let gemModel = Gem(apiKey: "boof for now", baseStringURL: "127.0.0.1:5000")
+    private let gemModel = Gem(apiKey: "boof for now", baseStringURL: "http://127.0.0.1:5000")
     private var request: GemModelRequest
     
     enum ChatError: Error {
         case invalidInput
     }
     
-    init () {}
+    init () {
+        self.request = GemModelRequest(content: "")
+    }
     
     func getChatResponse() async throws {
         
