@@ -1,10 +1,13 @@
 import SwiftUI
 
 struct ChatView: View {
-    @StateObject private var viewModel = ChatViewModel()
+    @State var selectedLLM: String = "gem"
+    
     
 
     var body: some View {
+        @StateObject var viewModel = ChatViewModel(LLM: selectedLLM)
+        
         VStack {
             HStack {
                 Menu {
@@ -12,7 +15,7 @@ struct ChatView: View {
                         
                     })
                     Button("Claude", action: {
-                        
+                        selectedLLM = "clde"
                     })
                 } label: {
                     Label("LLM", systemImage: "list.bullet")

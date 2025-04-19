@@ -6,15 +6,15 @@ class ChatViewModel: ObservableObject {
     @Published var query: String = ""
     @Published var queries: [String] = []
     @Published var isLoading: Bool = false
-    @Published var LLM: String = "gem"
-    
-    private let gemModel = Gem(apiKey: "boof for now", baseStringURL: "http://127.0.0.1:5000/query/gem")
-    
+    @Published var LLM: String
+    private var llmModel = LLMService(apiKey: "boof api key")
+        
     enum ChatError: Error {
         case invalidInput
     }
     
-    init () {
+    init (LLM: String) {
+        self.LLM = LLM
     }
     
     func getChatResponse() async throws {
@@ -25,20 +25,23 @@ class ChatViewModel: ObservableObject {
         
         isLoading = true
         
-        let request = GemModelRequest(content: query)
-        
-        do {
-            let response: GemModelResponse = try await (gemModel.recieveResponse(body: request))
+        if(LLM == "gem") {
+            let request = GemModelRequest(content: query)
             
-            await MainActor.run {
-                let reply = response.response ?? "Failed Response"
-                queries.append(reply)
-                query = ""
-                isLoading = false
+            do {
+                let response: GemModelResponse = try await (llmModel.receiveGemResponse(body: request))
+                
+                await MainActor.run {
+                    let reply = response.response ?? "Failed Response"
+                    queries.append(reply)
+                    query = ""
+                    isLoading = false
+                }
+            } catch {
+                print("Error fetching response: \(error)")
             }
-        } catch {
-            print("Error fetching response: \(error)")
         }
+        
         
         
     }
