@@ -52,7 +52,11 @@ struct ChatView: View {
 
 
 
-            TextField("Type your message...", text: $viewModel.query)
+            TextField("Type your message...", text: $viewModel.query, onCommit: {
+                Task {
+                    try? await viewModel.getChatResponse()
+                }
+            })
                 .padding()
                 .foregroundColor(.white)
                 .background(Color.clear)
@@ -61,15 +65,6 @@ struct ChatView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(Color.white, lineWidth: 1)
                 )
-            Button(action: {
-                Task {
-                    try? await viewModel.getChatResponse()
-                }
-            }) {
-                Image(systemName: "paperplane.fill")
-                    .foregroundColor(.white)
-                    .padding()
-            }
                 .padding(.horizontal)
                 .padding(.bottom)
 

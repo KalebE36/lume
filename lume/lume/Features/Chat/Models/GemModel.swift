@@ -3,6 +3,7 @@
 struct GemModelResponse: Decodable {
     var success: Bool
     var response: String?
+    var error: String?
 }
 
 struct GemModelRequest: Encodable {

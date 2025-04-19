@@ -20,6 +20,7 @@ class Gem {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // Need to encode the body from the data class
         request.httpBody = try JSONEncoder().encode(body)
