@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  lume
-//
-//  Created by Kaleb Ellington on 4/18/25.
-//
-
 import SwiftUI
 
 

@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct ChatView: View {
-    @State private var messageText: String = ""
-    @State private var messages: [String] = ["test 1"]
+    @StateObject private var viewModel = ChatViewModel()
+    
 
     var body: some View {
         VStack {
@@ -32,12 +32,11 @@ struct ChatView: View {
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 10) {
-                    ForEach(messages, id: \.self) { message in
-                        Text(message)
-                            .padding(8)
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                    ForEach(viewModel.queries, id: \.self) { message in Text(message)
+                          .padding(8)
+                          .background(Color.blue)
+                          .foregroundColor(.white)
+                          .cornerRadius(10)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -53,7 +52,7 @@ struct ChatView: View {
 
 
 
-            TextField("Type your message...", text: $messageText)
+            TextField("Type your message...", text: $viewModel.query)
                 .padding()
                 .foregroundColor(.white)
                 .background(Color.clear)
@@ -62,6 +61,15 @@ struct ChatView: View {
                     RoundedRectangle(cornerRadius: 20)
                         .stroke(Color.white, lineWidth: 1)
                 )
+            Button(action: {
+                Task {
+                    try? await viewModel.getChatResponse()
+                }
+            }) {
+                Image(systemName: "paperplane.fill")
+                    .foregroundColor(.white)
+                    .padding()
+            }
                 .padding(.horizontal)
                 .padding(.bottom)
 
