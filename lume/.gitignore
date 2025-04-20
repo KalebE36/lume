@@ -65,9 +65,7 @@ iOSInjectionProject/
 #
 *.pem
 *.env
-ApiKeys.swift
-Config.swift
-Secrets.swift
+lume/Config/
 
 # LLM Model files
 #
