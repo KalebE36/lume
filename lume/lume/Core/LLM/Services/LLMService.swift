@@ -2,11 +2,11 @@
     import Foundation
 
     class LLMService {
+        
+        // Vars
         private let apiKey: String
         
-        
-        
-        
+        // Functions
         init(apiKey: String) {
             self.apiKey = apiKey
         }
