@@ -65,7 +65,7 @@ iOSInjectionProject/
 #
 *.pem
 *.env
-lume/Config/
+lume/Config/*
 
 # LLM Model files
 #
