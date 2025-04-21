@@ -28,6 +28,7 @@ struct ChatView: View {
                 ) {
                     Image(systemName: "gear")
                 }.font(.title2)
+        
                 
             }
             .padding(.horizontal)
